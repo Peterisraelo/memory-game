@@ -6,6 +6,7 @@ var decker =  document.querySelector(".deck");
 
 var openCards = [];
 
+var matchedCards = [];
 
 var moves = document.querySelector(".moves")
 
@@ -46,13 +47,26 @@ cards.forEach(function(car){
         openCards.push(this);
 
         if((openCards.length)==2){
+
+            cards.forEach(function(card){
+                card.classList.add("disabled");
+            });
+
             if((openCards[0].querySelector("i").className)==(openCards[1].querySelector("i").className)){
                 
-
 
                 (openCards[0].classList.add("match"));
                 (openCards[1].classList.add("match"));
 
+                cards.forEach(function(card){
+                    card.classList.remove("disabled");
+                })
+
+                matchedCards.push(openCards[0],openCards[1]);
+
+                matchedCards.forEach(function(card){
+                    card.classList.add("disabled");
+                });
 
 
                 openCards = [];
@@ -62,6 +76,12 @@ cards.forEach(function(car){
                 setTimeout(function(){
                     (openCards[0].classList.remove("open","show","disabled","wrong"));
                     (openCards[1].classList.remove("open","show","disabled","wrong"));
+
+                    cards.forEach(function(card){
+                        card.classList.remove("disabled");
+                    });
+
+
                     openCards = [];
                 }, 1100);
             }
