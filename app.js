@@ -6,6 +6,11 @@ var decker =  document.querySelector(".deck");
 
 var openCards = [];
 
+
+var moves = document.querySelector(".moves")
+
+moves= 0;
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -35,17 +40,25 @@ document.body.onload =  function(){
 };
 
 cards.forEach(function(car){
+
     car.addEventListener("click", function(){
-        car.className+= " open show disabled"
+        car.classList.add("open","show","disabled");
         openCards.push(this);
+
         if((openCards.length)==2){
             if((openCards[0].querySelector("i").className)==(openCards[1].querySelector("i").className)){
-                (openCards[0].className+= " match");
-                (openCards[1].className+= " match");
+                
+
+
+                (openCards[0].classList.add("match"));
+                (openCards[1].classList.add("match"));
+
+
+
                 openCards = [];
             }else{
-                openCards[0].className+= " wrong";
-                openCards[1].className+= " wrong";
+                openCards[0].classList.add("wrong");
+                openCards[1].classList.add("wrong");
                 setTimeout(function(){
                     (openCards[0].classList.remove("open","show","disabled","wrong"));
                     (openCards[1].classList.remove("open","show","disabled","wrong"));
