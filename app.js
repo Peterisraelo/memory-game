@@ -8,9 +8,19 @@ var openCards = [];
 
 var matchedCards = [];
 
-var moves = document.querySelector(".moves")
+var moves = document.querySelector(".moves");
 
-moves= 0;
+var mover;
+
+mover= 0;
+
+var timer= document.querySelector(".timer");
+
+var stars =  document.querySelectorAll(".fa-star");
+
+var starhold =  document.querySelector(".stars");
+
+
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -30,6 +40,12 @@ document.body.onload =  function(){
     cards = shuffle(cards);
 
     decker.innerHTML = "";
+    
+    startTimer();
+
+    stars.forEach(function(star){
+        star.style.color= "#FFD700";
+    })
 
     cards.forEach(function(item){
         decker.appendChild(item);
@@ -46,12 +62,20 @@ cards.forEach(function(car){
         car.classList.add("open","show","disabled");
         openCards.push(this);
 
+        if((mover>10)&&(mover<15)){
+            stars[2].style.visibility="collapse";
+        }
+        else if(mover>20){
+            stars[1].style.visibility="collapse";
+        }
+
         if((openCards.length)==2){
 
             cards.forEach(function(card){
                 card.classList.add("disabled");
             });
-
+            mover++;
+            moves.innerHTML= mover;
             if((openCards[0].querySelector("i").className)==(openCards[1].querySelector("i").className)){
                 
 
@@ -66,10 +90,15 @@ cards.forEach(function(car){
 
                 matchedCards.forEach(function(card){
                     card.classList.add("disabled");
-                });
+                })
 
 
                 openCards = [];
+
+                if(matchedCards.length==16){
+                    finishGame();
+                };
+
             }else{
                 openCards[0].classList.add("wrong");
                 openCards[1].classList.add("wrong");
@@ -83,9 +112,34 @@ cards.forEach(function(car){
 
 
                     openCards = [];
-                }, 1100);
+                }, 1000);
             }
         }
     });
 });
 
+var second = 0;
+var minute = 0;
+var hour = 0;
+function startTimer(){
+    Interval= setInterval(function(){
+        timer.innerHTML = minute + " mins" + second + "secs";
+        second++;
+        if(second==60){
+            minute++;
+            second=0;
+        };
+        if(minute==60){
+            hour++;
+            minute=0;
+        }
+    }, 1000);
+    
+}
+
+function finishGame(){
+    document.querySelector("#totalmoves").innerHTML = mover;
+    document.querySelector("#totaltime").innerHTML = (timer).innerHTML;
+    document.querySelector("#starrating").innerHTML = document.querySelector(".stars").innerHTML;
+
+}

@@ -69,6 +69,7 @@ h1 {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
+    
 }
 
 .deck .card.show {
@@ -120,3 +121,9 @@ h1 {
 	pointer-events: none;
 	opacity: 0.9;
 }
+
+.timer{
+    display: inline-block;
+    margin-left: 25px;
+}
+
