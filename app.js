@@ -41,6 +41,8 @@ document.body.onload =  function(){
 
     decker.innerHTML = "";
     
+    typeWriter();
+    
     startTimer();
 
     stars.forEach(function(star){
@@ -137,9 +139,26 @@ function startTimer(){
     
 }
 
+
+var mode= document.querySelector(".modal");
+
 function finishGame(){
+    mode.style.display = "block";
     document.querySelector("#totalmoves").innerHTML = mover;
     document.querySelector("#totaltime").innerHTML = (timer).innerHTML;
     document.querySelector("#starrating").innerHTML = document.querySelector(".stars").innerHTML;
 
 }
+
+/*Footer animations*/
+var i = 0;
+var txt = 'Israel-Ovirih Peter, 2019©'; /* The text */
+var speed = 70; /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+if (i < txt.length) {
+document.querySelector(".ovirih").innerHTML += txt.charAt(i);
+i++;
+ setTimeout(typeWriter, speed);
+    }
+    }

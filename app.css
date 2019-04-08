@@ -127,3 +127,37 @@ h1 {
     margin-left: 25px;
 }
 
+#starrating{
+    display: inline-block!important;
+    list-style-type: none;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    vertical-align: middle;
+}
+
+.modal-content{
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid;
+    width: 80%;
+    text-align: center;
+}
+button{
+    font-size: 30px;
+
+}
+.ovirih{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
